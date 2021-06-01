@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "name": "better_noclip",
+  "version": "1.0.0",
+  "description": "NoClip for Players and Vehicles",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeCyreaxYT/altv-better-noclip.git"
+  },
+  "keywords": [
+    "altv",
+    "noclip",
+    "betternoclip"
+  ],
+  "author": "LeCyreaxYT",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/LeCyreaxYT/altv-better-noclip/issues"
+  },
+  "homepage": "https://github.com/LeCyreaxYT/altv-better-noclip/blob/main/README.md"
+}
