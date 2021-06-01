@@ -27,6 +27,8 @@ altVServer/
 
 **Configs: (In client.js):**
 ```
+const PlayerVisible = false;
+
 const SpeedsCount = 7;
 const speeds = {
     0: "Very Slow",
@@ -50,25 +52,26 @@ const KeyInfos = {
 }
 
 const KeyControls = {
-    TOGGLE: 166,
-    
-    MOVEUPONLY: 32,
-    MOVEDOWNONLY: 33,
-    MOVELEFTONLY: 34,
-    MOVERIGHTONLY: 35,
+    ToggleAltV: 116,
+    ToggleGTA: 166,
 
-    MOVEUP: 268,
-    MOVEDOWN: 269,
-    MOVELEFT:  266,
-    MOVERIGHT: 267,
+    MoveUpOnly: 32,
+    MoveDownOnly: 33,
+    MoveLeftOnly: 34,
+    MoveRightOnly: 35,
 
-    MOVEUD: 31,
-    MOVELR: 30,
+    MoveUP: 268,
+    MoveDown: 269,
+    MoveLeft: 266,
+    MoveRight: 267,
 
-    COVER: 44,
-    SPRINT: 21,
-    RADIOWHEEL: 85,
-    HORN: 86,
-    HEADLIGHT: 74
+    MoveUD: 31,
+    MoveLR: 30,
+
+    Cover: 44,
+    Spring: 21,
+    RadioWheel: 85,
+    Horn: 86,
+    HeadLight: 74
 }
 ```
