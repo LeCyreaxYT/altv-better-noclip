@@ -8,6 +8,7 @@ altVServer/
     └── BetterNoClip/
         ├── client.js
         ├── server.js
+        ├── package.json
         └── resource.cfg
 ```
 
