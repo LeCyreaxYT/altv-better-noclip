@@ -1,6 +1,6 @@
 # AltV Better NoClip - Documentation
 
-### This NoCLip Version work with Player and Vehicle if you find Errors or Bugs then make a Issue
+### This NoCLip version work with player and vehicles if you find errors or bugs then make a issue.
 
 ### Controls:
 #### - F5 = Toggle NoClip
