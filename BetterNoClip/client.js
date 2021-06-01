@@ -10,6 +10,8 @@ let Scale = -1;
 let FollowCamMode = true;
 
 // THIS CAN YOU EDIT //
+const PlayerVisible = false;
+
 const SpeedsCount = 7;
 const speeds = {
     0: "Very Slow",
@@ -33,26 +35,27 @@ const KeyInfos = {
 }
 
 const KeyControls = {
-    TOGGLE: 166,
-    
-    MOVEUPONLY: 32,
-    MOVEDOWNONLY: 33,
-    MOVELEFTONLY: 34,
-    MOVERIGHTONLY: 35,
+    ToggleAltV: 116,
+    ToggleGTA: 166,
 
-    MOVEUP: 268,
-    MOVEDOWN: 269,
-    MOVELEFT:  266,
-    MOVERIGHT: 267,
+    MoveUpOnly: 32,
+    MoveDownOnly: 33,
+    MoveLeftOnly: 34,
+    MoveRightOnly: 35,
 
-    MOVEUD: 31,
-    MOVELR: 30,
+    MoveUP: 268,
+    MoveDown: 269,
+    MoveLeft: 266,
+    MoveRight: 267,
 
-    COVER: 44,
-    SPRINT: 21,
-    RADIOWHEEL: 85,
-    HORN: 86,
-    HEADLIGHT: 74
+    MoveUD: 31,
+    MoveLR: 30,
+
+    Cover: 44,
+    Spring: 21,
+    RadioWheel: 85,
+    Horn: 86,
+    HeadLight: 74
 }
 
 // CODE - DO NOT EDIT
@@ -104,7 +107,7 @@ alt.everyTick(() => {
 
             game.beginScaleformMovieMethod(Scale, "SET_DATA_SLOT");
             game.scaleformMovieMethodAddParamInt(6);
-            game.scaleformMovieMethodAddParamTextureNameString(game.getControlInstructionalButton(0, KeyControls.TOGGLE, 1));
+            game.scaleformMovieMethodAddParamTextureNameString(game.getControlInstructionalButton(0, KeyControls.ToggleGTA, 1));
             game.scaleformMovieMethodAddParamTextureNameString("Toggle NoClip");
             game.endScaleformMovieMethod();
 
@@ -118,27 +121,27 @@ alt.everyTick(() => {
         let noclipEntity = alt.Player.local.vehicle ? alt.Player.local.vehicle : alt.Player.local;
         let newPos;
 
-        game.disableControlAction(0, KeyControls.MOVEUPONLY);
-        game.disableControlAction(0, KeyControls.MOVEUP);
-        game.disableControlAction(0, KeyControls.MOVEUD);
-        game.disableControlAction(0, KeyControls.MOVEDOWN);
-        game.disableControlAction(0, KeyControls.MOVEDOWNONLY);
-        game.disableControlAction(0, KeyControls.MOVELEFT);
-        game.disableControlAction(0, KeyControls.MOVELEFTONLY);
-        game.disableControlAction(0, KeyControls.MOVELR);
-        game.disableControlAction(0, KeyControls.MOVERIGHT);
-        game.disableControlAction(0, KeyControls.MOVERIGHTONLY);
-        game.disableControlAction(0, KeyControls.COVER);
-        game.disableControlAction(0, KeyControls.HORN);
-        game.disableControlAction(0, KeyControls.HEADLIGHT);
+        game.disableControlAction(0, KeyControls.MoveUpOnly);
+        game.disableControlAction(0, KeyControls.MoveUp);
+        game.disableControlAction(0, KeyControls.MoveUD);
+        game.disableControlAction(0, KeyControls.MoveDown);
+        game.disableControlAction(0, KeyControls.MoveDownOnly);
+        game.disableControlAction(0, KeyControls.MoveLeft);
+        game.disableControlAction(0, KeyControls.MoveLeftOnly);
+        game.disableControlAction(0, KeyControls.MoveLR);
+        game.disableControlAction(0, KeyControls.MoveRight);
+        game.disableControlAction(0, KeyControls.MoveRightOnly);
+        game.disableControlAction(0, KeyControls.Cover);
+        game.disableControlAction(0, KeyControls.Horn);
+        game.disableControlAction(0, KeyControls.HeadLight);
         if (alt.Player.local.vehicle)
-            game.disableControlAction(0, KeyControls.RADIOWHEEL);
+            game.disableControlAction(0, KeyControls.RadioWheel);
         
         let yoff = 0.0;
         let zoff = 0.0;
 
         if (game.updateOnscreenKeyboard() !== 0 && alt.isGameFocused()) {
-            if (game.isControlJustPressed(0, KeyControls.SPRINT))
+            if (game.isControlJustPressed(0, KeyControls.Spring))
             {
                 MovingSpeed++;
                 if (MovingSpeed === SpeedsCount)
@@ -147,31 +150,31 @@ alt.everyTick(() => {
                 }
             }
 
-            if (game.isDisabledControlPressed(0,KeyControls.MOVEUPONLY))
+            if (game.isDisabledControlPressed(0,KeyControls.MoveUpOnly))
             {
                 yoff = 0.5;
             }
-            if (game.isDisabledControlPressed(0, KeyControls.MOVEDOWNONLY))
+            if (game.isDisabledControlPressed(0, KeyControls.MoveDownOnly))
             {
                 yoff = -0.5;
             }
-            if (!FollowCamMode && game.isDisabledControlPressed(0, KeyControls.MOVELEFTONLY))
+            if (!FollowCamMode && game.isDisabledControlPressed(0, KeyControls.MoveLeftOnly))
             {
                 game.setEntityHeading(alt.Player.local.scriptID, game.getEntityHeading(alt.Player.local.scriptID) + 3);
             }
-            if (!FollowCamMode && game.isDisabledControlPressed(0, KeyControls.MOVERIGHTONLY))
+            if (!FollowCamMode && game.isDisabledControlPressed(0, KeyControls.MoveRightOnly))
             {
                 game.setEntityHeading(alt.Player.local.scriptID, game.getEntityHeading(alt.Player.local.scriptID) - 3);
             }
-            if (game.isDisabledControlPressed(0, KeyControls.COVER))
+            if (game.isDisabledControlPressed(0, KeyControls.Cover))
             {
                 zoff = 0.21;
             }
-            if (game.isDisabledControlPressed(0, KeyControls.HORN))
+            if (game.isDisabledControlPressed(0, KeyControls.Horn))
             {
                 zoff = -0.21;
             }
-            if (game.isDisabledControlJustPressed(0, KeyControls.HEADLIGHT))
+            if (game.isDisabledControlJustPressed(0, KeyControls.HeadLight))
             {
                 FollowCamMode = !FollowCamMode;
             }
@@ -200,20 +203,24 @@ function NoClip() {
     if(NoclipActive) {
         game.freezeEntityPosition(noclipEntity.scriptID, true);
         game.setEntityCollision(noclipEntity.scriptID, false, false);
-        alt.emitServer("Server:NoClip:PlayerVisible", true);
+        
+        if(PlayerVisible) alt.emitServer("NoClip:PlayerVisible", true);
+
     } else {
         game.freezeEntityPosition(noclipEntity.scriptID, false);
         game.setEntityCollision(noclipEntity.scriptID, true, true);
-        alt.emitServer("Server:NoClip:PlayerVisible", false);
+
+        if(PlayerVisible) alt.emitServer("NoClip:PlayerVisible", false);
+
     }
 }
 
 alt.on("keyup", (key) => {
-    if(key === KeyControls.TOGGLE) {
+    if(key === KeyControls.ToggleAltV) {
         NoClip();
     }
 });
 
-alt.onServer("client:noclip:enable", () => {
+alt.onServer("NoClip:Toggle", () => {
     NoClip();
 });
