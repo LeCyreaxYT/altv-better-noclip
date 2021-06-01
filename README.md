@@ -1,6 +1,6 @@
 # AltV Better NoClip - Documentation
 
-This NoCLip version work with players and vehicles if you find errors or bugs then make a issue.
+This NoClip version work with players and vehicles if you find errors or bugs then make a issue.
 
 ```
 altVServer/
