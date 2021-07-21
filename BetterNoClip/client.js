@@ -1,5 +1,3 @@
-///<reference types="@altv/types-client" />
-///<reference types="@altv/types-natives" />
 import * as alt from 'alt-client';
 import * as game from 'natives';
 
@@ -64,7 +62,7 @@ alt.everyTick(() => {
     if (NoclipActive)
     {
         Scale = game.requestScaleformMovie("INSTRUCTIONAL_BUTTONS");
-        
+
         if(!game.isHudHidden()) {
             game.beginScaleformMovieMethod(Scale, "CLEAR_ALL");
             game.endScaleformMovieMethod();
@@ -107,7 +105,7 @@ alt.everyTick(() => {
 
             game.beginScaleformMovieMethod(Scale, "SET_DATA_SLOT");
             game.scaleformMovieMethodAddParamInt(6);
-            game.scaleformMovieMethodAddParamTextureNameString(game.getControlInstructionalButton(0, KeyControls.ToggleGTA, 1));
+            game.scaleformMovieMethodAddParamTextureNameString(game.getControlInstructionalButton(0, KeyControls.ToggleGTA, true));
             game.scaleformMovieMethodAddParamTextureNameString("Toggle NoClip");
             game.endScaleformMovieMethod();
 
@@ -117,26 +115,26 @@ alt.everyTick(() => {
 
             game.drawScaleformMovieFullscreen(Scale, 255, 255, 255, 255, 0);
         }
-        
+
         let noclipEntity = alt.Player.local.vehicle ? alt.Player.local.vehicle : alt.Player.local;
         let newPos;
 
-        game.disableControlAction(0, KeyControls.MoveUpOnly);
-        game.disableControlAction(0, KeyControls.MoveUp);
-        game.disableControlAction(0, KeyControls.MoveUD);
-        game.disableControlAction(0, KeyControls.MoveDown);
-        game.disableControlAction(0, KeyControls.MoveDownOnly);
-        game.disableControlAction(0, KeyControls.MoveLeft);
-        game.disableControlAction(0, KeyControls.MoveLeftOnly);
-        game.disableControlAction(0, KeyControls.MoveLR);
-        game.disableControlAction(0, KeyControls.MoveRight);
-        game.disableControlAction(0, KeyControls.MoveRightOnly);
-        game.disableControlAction(0, KeyControls.Cover);
-        game.disableControlAction(0, KeyControls.Horn);
-        game.disableControlAction(0, KeyControls.HeadLight);
+        game.disableControlAction(0, KeyControls.MoveUpOnly, true);
+        game.disableControlAction(0, KeyControls.MoveUP, true);
+        game.disableControlAction(0, KeyControls.MoveUD, true);
+        game.disableControlAction(0, KeyControls.MoveDown, true);
+        game.disableControlAction(0, KeyControls.MoveDownOnly, true);
+        game.disableControlAction(0, KeyControls.MoveLeft, true);
+        game.disableControlAction(0, KeyControls.MoveLeftOnly, true);
+        game.disableControlAction(0, KeyControls.MoveLR, true);
+        game.disableControlAction(0, KeyControls.MoveRight, true);
+        game.disableControlAction(0, KeyControls.MoveRightOnly, true);
+        game.disableControlAction(0, KeyControls.Cover, true);
+        game.disableControlAction(0, KeyControls.Horn, true);
+        game.disableControlAction(0, KeyControls.HeadLight, true);
         if (alt.Player.local.vehicle)
-            game.disableControlAction(0, KeyControls.RadioWheel);
-        
+            game.disableControlAction(0, KeyControls.RadioWheel, true);
+
         let yoff = 0.0;
         let zoff = 0.0;
 
@@ -203,7 +201,7 @@ function NoClip() {
     if(NoclipActive) {
         game.freezeEntityPosition(noclipEntity.scriptID, true);
         game.setEntityCollision(noclipEntity.scriptID, false, false);
-        
+
         if(PlayerVisible) alt.emitServer("NoClip:PlayerVisible", true);
 
     } else {
